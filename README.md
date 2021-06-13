@@ -12,7 +12,7 @@ It contains features such as:
 7. Basic charts showing the spending behaviour of each user
 8. export data to csv
 
-This project was completed by Ari Juanda and Muhammad Ichsan Rosaldi.
+This project was completed by <a href="https://github.com/juandari">Ari Juanda</a> and Muhammad Ichsan Rosaldi.
 </p>
 
 ## Todos
