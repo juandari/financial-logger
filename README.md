@@ -1,6 +1,6 @@
 <h1 align="center">Financial Logger App</h1>
 
-<>This is a financial logging app that can track your spending habits.
+<p>This is a financial logging app that can track your spending habits.
 
 It contains features such as:
 1. Create a transaction, which have two types: income and expense
@@ -17,7 +17,7 @@ This project was completed by Ari Juanda and Muhammad Ichsan Rosaldi.
 
 ## Todos
 
-- [] Create models
+- [x] Create models
 - [] Create migrations
 - [] Create views
 - [] Create table associations
