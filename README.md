@@ -17,13 +17,13 @@ This project was completed by Ari Juanda and Muhammad Ichsan Rosaldi.
 
 ## Todos
 
-- [x] Create models
-- [] Create migrations
-- [] Create views
-- [] Create table associations
-- [] Calculate the balance of each wallet using helper function
-- [] Add "Rp." to the balance and transactions amount using hooks
-- [] Validate: transaction amount must be greater than 0
-- [] Export to csv features (maybe using helper function)
-- [] Charts features
-- [] Deploy to heroku
+- [ ] Create models
+- [ ] Create migrations
+- [ ] Create views
+- [ ] Create table associations
+- [ ] Calculate the balance of each wallet using helper function
+- [ ] Add "Rp." to the balance and transactions amount using hooks
+- [ ] Validate: transaction amount must be greater than 0
+- [ ] Export to csv features (maybe using helper function)
+- [ ] Charts features
+- [ ] Deploy to heroku
