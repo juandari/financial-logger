@@ -17,10 +17,10 @@ This project was completed by <a href="https://github.com/juandari">Ari Juanda</
 
 ## Todos
 
-1. [ ] Create models
-2. [ ] Create migrations
+1. [x] Create models
+2. [x] Create migrations
 3. [ ] Create views
-4. [ ] Create table associations
+4. [x] Create table associations
 5. [ ] Calculate the balance of each wallet using helper function
 6. [ ] Add "Rp." to the balance and transactions amount using hooks
 7. [ ] Validate: transaction amount must be greater than 0
