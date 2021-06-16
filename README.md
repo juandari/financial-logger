@@ -19,7 +19,7 @@ This project was completed by <a href="https://github.com/juandari">Ari Juanda</
 
 1. [x] Create models
 2. [x] Create migrations
-3. [ ] Create views
+3. [x] Create views
 4. [x] Create table associations
 5. [ ] Calculate the balance of each wallet using helper function
 6. [ ] Add "Rp" to the balance and transactions amount using hooks
