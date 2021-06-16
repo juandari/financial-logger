@@ -11,20 +11,23 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
-      },
       type: {
         type: Sequelize.STRING
       },
       amount: {
         type: Sequelize.BIGINT
       },
-      category_id: {
-        type: Sequelize.INTEGER
+      category: {
+        type: Sequelize.STRING
       },
       note: {
         type: Sequelize.STRING
+      },
+      wallet_id: {
+        type: Sequelize.INTEGER
+      },
+      transaction_date: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

@@ -1,4 +1,6 @@
 'use strict';
+
+const timetampsToDate = require('../helpers/convertTimestampToDate')
 const {
   Model
 } = require('sequelize');
@@ -10,24 +12,29 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.categoryAssociation = this.belongsTo(models.Categories, {
-        foreignKey: 'category_id'
-      })
+      // this.categoryAssociation = this.belongsTo(models.Categories, {
+      //   foreignKey: 'category_id'
+      // })
       this.usersAssociation = this.belongsTo(models.User, {
         foreignKey: 'user_id'
+      })
+      this.walletAssociation = this.belongsTo(models.Wallet, {
+        foreignKey: 'wallet_id'
       })
     }
   };
   Transaction.init({
     user_id: DataTypes.INTEGER,
-    name: DataTypes.STRING,
     type: DataTypes.STRING,
     amount: DataTypes.BIGINT,
-    category_id: DataTypes.INTEGER,
-    note: DataTypes.STRING
+    category: DataTypes.STRING,
+    note: DataTypes.STRING,
+    wallet_id: DataTypes.INTEGER,
+    transaction_date: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Transaction',
   });
+
   return Transaction;
 };

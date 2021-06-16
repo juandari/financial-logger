@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       this.usersAssociation = this.hasMany(models.Users_Wallets, {
         foreignKey: 'wallet_id'
       })
+      this.transactionAssociation = this.hasMany(models.Transaction, {
+        foreignKey: 'wallet_id'
+      })
     }
   };
   Wallet.init({

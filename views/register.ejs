@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyBung</title>
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-800 p-5">
+    <div class="container mx-auto w-80 h-full">
+      <%- include('partials/title.ejs') %>
+
+      
+      <form action="/register", method="POST" class="font-poppins">
+        <div class="w-full">
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="w-full">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" placeholder="name">
+        </div>
+        <div class="w-full">    
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" placeholder="Password">
+        </div>
+
+        <button type="submit">Submit</button>
+        <a href="/login">Cancel</a>
+      </form>
+      
+    </div>
+  </body>
+</html>

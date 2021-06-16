@@ -22,7 +22,7 @@ This project was completed by <a href="https://github.com/juandari">Ari Juanda</
 3. [ ] Create views
 4. [x] Create table associations
 5. [ ] Calculate the balance of each wallet using helper function
-6. [ ] Add "Rp." to the balance and transactions amount using hooks
+6. [ ] Add "Rp" to the balance and transactions amount using hooks
 7. [ ] Validate: transaction amount must be greater than 0
 8. [ ] Export to csv features (maybe using helper function)
 9. [ ] Charts features
