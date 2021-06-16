@@ -13,6 +13,12 @@ module.exports = {
       },
       balance: {
         type: Sequelize.BIGINT
+      },
+      createdAt: {
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        type: Sequelize.DATE
       }
     });
   },

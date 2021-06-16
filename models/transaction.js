@@ -29,7 +29,15 @@ module.exports = (sequelize, DataTypes) => {
     amount: DataTypes.BIGINT,
     category: DataTypes.STRING,
     note: DataTypes.STRING,
-    wallet_id: DataTypes.INTEGER,
+    wallet_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: {
+          args: 1,
+          msg: 'Choose wallet before saving a transaction'
+        }
+      }
+    },
     transaction_date: DataTypes.DATE
   }, {
     sequelize,

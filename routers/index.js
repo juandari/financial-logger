@@ -1,18 +1,17 @@
 const router = require('express').Router()
 const transactionRouter = require('./transactionRouter')
 const walletRouter = require('./walletRouter')
-const userRouter = require('./userRouter')
 const register = require('./register')
 const login = require('./login')
-
-router.get('/', (req, res) => {
-  res.redirect('/login')
-})
+const LoginController = require('../controllers/LoginController')
+const TransactionController = require('../controllers/TransactionController')
+const authMiddleware = require('../helpers/authMiddleware')
 
 router.use('/login', login)
 router.use('/register', register)
+router.use(authMiddleware)
 router.use('/wallet', walletRouter)
 router.use('/transaction', transactionRouter)
-router.use('/user', userRouter)
+router.get('/logout', LoginController.logout)
 
 module.exports = router

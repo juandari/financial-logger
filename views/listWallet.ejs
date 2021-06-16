@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallets</title>
+  <link rel="stylesheet" href="/styles.css" type="text/css" />
+</head>
+<body>
+  <div class="container mx-auto w-80 h-full overflow-auto">
+    <%- include('partials/title.ejs') %>
+
+      <div class="my-6 text-center">
+        <a href="/logout" class="px-6 py-2 bg-red-500 text-white text-lg rounded-full uppercase font-mono tracking-wider">Logout</a>
+      </div>
+
+      <div>
+        <div class="mt-10 mb-8 font-poppins font-bold text-gray-700 text-2xl flex flex-row justify-between align-center">
+          <h2>Wallets</h2>
+          <a href="/wallet/add" class="bg-blue-400 text-white px-4 py-1 rounded-full text-lg">Add</a>
+        </div>
+        <!-- CARD SECTION -->
+        <%- include('partials/walletCard') %> 
+      </div>
+
+  </div>
+
+  <%- include('partials/walletFooter') %>
+</body>
+</html>

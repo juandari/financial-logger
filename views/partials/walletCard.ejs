@@ -1,0 +1,7 @@
+<% userWallets.forEach(userWallet => { %>
+  <div class=" text-white mb-4 tracking-wider text-2xl font-poppins font-semibold w-full h-36 relative px-2 bg-gradient-to-tl from-green-200 to-blue-500 rounded-lg">
+    <span class="block p-5"><%= userWallet.Wallet.name %></span>
+    <span class="block p-5 text-lg"><%= userWallet.User.name %></span>
+    <span class="block p-5 absolute bottom-0 right-0 text-lg"><%= userWallet.Wallet.balance %></span>
+  </div>
+<% }) %> 

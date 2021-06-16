@@ -12,22 +12,19 @@
       <%- include('partials/title.ejs') %>
 
       
-      <form action="/register", method="POST" class="font-poppins">
-        <div class="w-full">
-          <label for="email">Email</label>
-          <input type="text" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <form action="/register", method="POST" class="font-poppins mt-10">
+        <div class="w-full mb-5">
+          <input required class="pl-5 rounded-full border-none shadow-xl" type="text" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter Email">
         </div>
-        <div class="w-full">
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="name">
+        <div class="w-full mb-5">
+          <input required class="pl-5 rounded-full border-none shadow-xl" type="text" name="name" id="name" placeholder="Enter Name">
         </div>
-        <div class="w-full">    
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" placeholder="Password">
+        <div class="w-full mb-10">
+          <input required class="pl-5 rounded-full border-none shadow-xl" type="password" name="password" id="password" placeholder="Enter Password">
         </div>
 
-        <button type="submit">Submit</button>
-        <a href="/login">Cancel</a>
+        <button class="rounded-full px-4 py-1 mr-4 bg-green-400 shadow-xl hover:bg-green-500" type="submit">Submit</button>
+        <a class="rounded-full px-4 py-1 bg-red-400 shadow-xl hover:bg-red-500" href="/login">Cancel</a>
       </form>
       
     </div>

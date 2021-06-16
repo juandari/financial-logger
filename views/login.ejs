@@ -10,6 +10,24 @@
   <body class="bg-gray-100 dark:bg-gray-800 p-5">
     <div class="container mx-auto w-80 h-full">
       <%- include('partials/title.ejs') %>
+
+      <% if (notif) { %>
+        <div class="text-center">
+          <%= notif %> 
+        </div>
+      <% } %>
+
+      <form action="/login", method="POST" class="font-poppins mt-10">
+        <div class="w-full mb-5">
+          <input required class="pl-5 rounded-full border-none shadow-xl" type="text" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter Email">
+        </div>
+        <div class="w-full mb-10">
+          <input required class="pl-5 rounded-full border-none shadow-xl" type="password" name="password" id="password" placeholder="Enter Password">
+        </div>
+
+        <button class="text-white rounded-full px-4 py-1 mr-4 bg-green-400 shadow-xl hover:bg-green-500" type="submit">Submit</button>
+        <a class="text-white rounded-full px-4 py-1 bg-blue-400 shadow-xl hover:bg-blue-500" href="/register">Register</a>
+      </form>
     </div>
   </body>
 </html>

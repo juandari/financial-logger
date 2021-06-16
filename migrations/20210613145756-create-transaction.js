@@ -35,6 +35,7 @@ module.exports = {
         }
       },
       transaction_date: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       createdAt: {

@@ -81,6 +81,33 @@
             <option value="Expense">Expense</option>
           </select>
         </div>
+
+        <div class="w-full">
+          <select
+            name="wallet_id"
+            id="wallet_id"
+            class="
+              block
+              appearance-none
+              w-full
+              bg-gray-200
+              border border-gray-200
+              text-gray-700
+              py-4
+              rounded
+              leading-tight
+              focus:outline-none
+              focus:bg-white
+              focus:border-gray-500
+            "
+          >
+            <option value="">Wallet</option>
+            <% wallets.forEach((wallet, index) => { %>
+              <option value="<%= wallet.id %>"><%= wallet.name %></option>
+            <% }) %> 
+          </select>
+        </div>
+
         <div class="w-full">
           <select
             name="category"
