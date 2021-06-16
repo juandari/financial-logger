@@ -9,7 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        reference: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       type: {
         type: Sequelize.STRING
@@ -24,7 +28,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       wallet_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        reference: {
+          model: 'Wallets',
+          key: 'id'
+        }
       },
       transaction_date: {
         type: Sequelize.DATE
