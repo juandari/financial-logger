@@ -1,9 +1,12 @@
-const { Transaction, Wallet } = require('../models')
+const { Transaction, Wallet, Users_Wallets, User } = require('../models')
 const moment = require('moment')
 
 class TransactionController {
   static home(req, res) {
     Transaction.findAll({
+      where: {
+        user_id: +req.session.user_id
+      },
       include: Wallet,
       order: [['transaction_date', 'DESC']],
     })
@@ -21,11 +24,19 @@ class TransactionController {
   }
 
   static addForm(req, res) {
-    let wallets
+    let wallets = []
 
-    Wallet.findAll()
+    Users_Wallets.findAll({
+      include: Wallet,
+      where: {
+        user_id: +req.session.user_id
+      }
+    })
       .then((result) => {
-        wallets = result
+        result.forEach((userWallet) => {
+          wallets.push(userWallet.Wallet)
+        })
+
         if (wallets.length > 0) {
           res.render('addTransaction', { wallets })
         } else {
@@ -51,9 +62,9 @@ class TransactionController {
     })
       .then((result) => {
         if (type === 'Expense') {
-          result.balance -= amount
+          result.balance = +result.balance - amount
         } else {
-          result.balance += amount
+          result.balance = +result.balance + amount
         }
 
         Wallet.update({balance: result.balance}, {

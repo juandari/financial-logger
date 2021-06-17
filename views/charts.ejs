@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charts</title>
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-800 p-5 font-poppins">
+    <div class="container mx-auto w-80 h-full overflow-auto">
+      <%- include('partials/title.ejs') %>
+
+      <div class="my-6 text-center">
+        <a
+          href="/logout"
+          class="
+            px-6
+            py-2
+            bg-red-500
+            text-white text-lg
+            rounded-full
+            uppercase
+            font-mono
+            tracking-wider
+          "
+          >Logout</a
+        >
+      </div>
+
+      <div>
+        <div
+          class="
+            mt-10
+            mb-8
+            font-poppins font-bold
+            text-gray-700 text-2xl
+            flex flex-row
+            justify-between
+            align-center
+          "
+        >
+          <h2>Charts</h2>
+        </div>
+      </div>
+    </div>
+
+    <canvas class="block mb-4" id="lineChart" width="400" height="200"></canvas>
+    <canvas class="block" id="pieChart" width="200" height="200"></canvas>
+
+    <%- include('partials/chartFooter') %>
+    
+    <% let lineLabels = lineChartLabels; %>
+    <% let lineData = lineChartData; %>
+    <% let pieLabels = pieChartLabels; %>
+    <% let pieData = pieChartData; %>
+
+    <script type="text/javascript">
+      let line = document.getElementById('lineChart').getContext('2d');
+      let pie = document.getElementById('pieChart').getContext('2d');
+      let lineChartLabels = [];
+      let lineChartData = [];
+      let pieChartLabels = [];
+      let pieChartData = [];
+
+      <% for (let i = 0; i < lineLabels.length; i++) { %>
+        lineChartLabels.push('<%= lineLabels[i] %>')
+      <% } %>
+
+      <% for (let i = 0; i < lineData.length; i++) { %>
+        lineChartData.push(<%= lineData[i] %>)
+      <% } %>
+
+      <% for (let i = 0; i < pieLabels.length; i++) { %>
+        pieChartLabels.push('<%= pieLabels[i] %>')
+      <% } %>
+
+      <% for (let i = 0; i < pieData.length; i++) { %>
+        pieChartData.push(<%= pieData[i] %>)
+      <% } %>
+
+      const lineChart = new Chart(line, {
+        type: 'line',
+        data: {
+          labels: lineChartLabels,
+          datasets: [
+            {
+              label: 'Amount',
+              data: lineChartData,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1,
+            },
+          ],
+        },
+      })
+
+      const pieChart = new Chart(pie, {
+        type: 'doughnut',
+        data: {
+          labels: pieChartLabels,
+          datasets: [
+            {
+              label: 'Spending per Category (%)',
+              data: pieChartData,
+              backgroundColor: [
+                'rgb(38, 70, 83)',
+                'rgb(42, 157, 143)',
+                'rgb(233, 196, 106)',
+                'rgb(244, 162, 97)',
+                'rgb(231, 111, 81)',
+              ],
+            },
+          ],
+        },
+      })
+    </script>
+  </body>
+</html>

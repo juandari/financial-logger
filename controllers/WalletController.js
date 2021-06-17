@@ -1,4 +1,4 @@
-const { Wallet, Users_Wallets, User } = require('../models')
+const { Wallet, Users_Wallets, User, Transaction } = require('../models')
 
 class WalletController {
   static home(req, res) {
@@ -27,29 +27,40 @@ class WalletController {
       .then((result) => {
         Users_Wallets.create({
           wallet_id: +result.id,
-          user_id: +req.session.user_id
+          user_id: +req.session.user_id,
+        }).then((result) => {
+          res.redirect('/wallet')
         })
-          .then((result) => {
-            res.redirect('/wallet')
-          })
-
       })
       .catch((err) => {
         res.send(err)
       })
-
   }
 
   static delete(req, res) {
     const { id } = req.params
 
-    Wallet.destroy({
+    Users_Wallets.destroy({
       where: {
-        id: +id,
+        wallet_id: +id,
       },
     })
       .then((result) => {
-        res.redirect('/wallet')
+        Wallet.destroy({
+          where: {
+            id: +id,
+          },
+        })
+          .then((result) => {
+            Transaction.destroy({
+              where: {
+                wallet_id: +id,
+              }
+            })
+              .then((result) => {
+                res.redirect('/wallet')
+              })
+          })
       })
       .catch((err) => {
         res.send(err)
