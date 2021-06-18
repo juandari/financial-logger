@@ -14,7 +14,6 @@ class WalletController {
         result.forEach(userWallet => {
           userWallet.Wallet.balance = formatbalance(userWallet.Wallet.balance)
         })
-        console.log(result[0].Wallet.balance);
         res.render('listWallet', { userWallets: result, balance:formatbalance })
       })
       .catch((err) => {
