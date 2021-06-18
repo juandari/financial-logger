@@ -1,10 +1,11 @@
 {
   "name": "finance-logger",
   "version": "1.0.0",
-  "description": "",
+  "description": "<h1 align=\"center\">Financial Logger App</h1>",
   "main": "index.js",
   "scripts": {
-    "build-css": "tailwindcss build src/styles.css -o public/styles.css"
+    "build-css": "tailwindcss build src/styles.css -o public/styles.css",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
@@ -22,11 +23,23 @@
     "chart.js": "^3.3.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
     "express-session": "^1.17.2",
     "express-validator": "^6.12.0",
+    "fast-csv": "^4.3.6",
     "moment": "^2.29.1",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.6.2"
-  }
+    "printj": "^1.2.2",
+    "sequelize": "^6.6.2",
+    "xlsx": "^0.17.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juandari/financial-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/juandari/financial-logger/issues"
+  },
+  "homepage": "https://github.com/juandari/financial-logger#readme"
 }

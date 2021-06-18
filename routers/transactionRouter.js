@@ -11,5 +11,7 @@ router.post('/edit/:id', TransactionController.editTransaction)
 
 router.get('/delete/:id', TransactionController.delete)
 
+router.get('/download', TransactionController.download)
+
 
 module.exports = router

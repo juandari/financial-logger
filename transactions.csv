@@ -1,0 +1,2 @@
+id,user_id,type,amount,category,note,wallet_id,transaction_date,createdAt,updatedAt
+1,1,Expense,123,Food,apa aja,2,Fri Jun 18 2021 07:00:00 GMT+0700 (Western Indonesia Time),Fri Jun 18 2021 14:06:46 GMT+0700 (Western Indonesia Time),Fri Jun 18 2021 14:06:46 GMT+0700 (Western Indonesia Time)
