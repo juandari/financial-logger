@@ -21,6 +21,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "chart.js": "^3.3.2",
+    "download": "^8.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
@@ -28,6 +29,7 @@
     "express-validator": "^6.12.0",
     "fast-csv": "^4.3.6",
     "moment": "^2.29.1",
+    "nodejs-file-downloader": "^4.7.0",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.4",
     "printj": "^1.2.2",

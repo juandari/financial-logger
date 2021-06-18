@@ -26,7 +26,15 @@ module.exports = (sequelize, DataTypes) => {
   Transaction.init({
     user_id: DataTypes.INTEGER,
     type: DataTypes.STRING,
-    amount: DataTypes.BIGINT,
+    amount: {
+      type: DataTypes.BIGINT,
+      validate: {
+        min: {
+          args: 1,
+          msg: 'transaction must be > 0'
+        }
+      }
+    },
     category: DataTypes.STRING,
     note: DataTypes.STRING,
     wallet_id: {

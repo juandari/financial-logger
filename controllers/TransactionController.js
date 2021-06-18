@@ -1,15 +1,14 @@
 const { Transaction, Wallet, Users_Wallets, User } = require('../models')
 const moment = require('moment')
 const formatbalance = require('../helpers/countbalance')
-const fastcsv = require("fast-csv");
-const fs = require("fs");
-
+const fastcsv = require('fast-csv')
+const fs = require('fs')
 
 class TransactionController {
   static home(req, res) {
     Transaction.findAll({
       where: {
-        user_id: +req.session.user_id
+        user_id: +req.session.user_id,
       },
       include: Wallet,
       order: [['transaction_date', 'DESC']],
@@ -34,8 +33,8 @@ class TransactionController {
     Users_Wallets.findAll({
       include: Wallet,
       where: {
-        user_id: +req.session.user_id
-      }
+        user_id: +req.session.user_id,
+      },
     })
       .then((result) => {
         result.forEach((userWallet) => {
@@ -72,15 +71,17 @@ class TransactionController {
           result.balance = +result.balance + amount
         }
 
-        Wallet.update({balance: result.balance}, {
-          where: {
-            id: +wallet_id
-          },
-          returning: true
+        Wallet.update(
+          { balance: result.balance },
+          {
+            where: {
+              id: +wallet_id,
+            },
+            returning: true,
+          }
+        ).then((result) => {
+          console.log('Update wallet balance successful')
         })
-          .then(result => {
-            console.log('Update wallet balance successful')
-          })
       })
       .catch((err) => {
         res.send(err)
@@ -183,27 +184,28 @@ class TransactionController {
       })
   }
 
-  static download(req,res){
+  static download(req, res) {
     let data = []
-    const ws = fs.createWriteStream("transactions.csv");
+    const ws = fs.createWriteStream('transactions.csv')
     Transaction.findAll()
-    .then(result=>{
-      result = result.map(transaction=>{
-        return transaction.dataValues
+      .then((result) => {
+        result = result.map((transaction) => {
+          return transaction.dataValues
+        })
+        data = result
+        fastcsv
+          .write(data, { headers: true })
+          .on('finish', function () {
+            res.redirect('/transaction/download/transactions.csv')
+
+            console.log('Write to transactions.csv successfully!')
+
+          })
+          .pipe(ws)
       })
-      data = result
-      console.log(data);
-      fastcsv
-      .write(data, { headers: true })
-      .on("finish", function() {
-        res.redirect('/transaction')
-        console.log("Write to transactions.csv successfully!");
+      .catch((err) => {
+        res.send(err)
       })
-    .pipe(ws);
-    })
-    .catch(err=>{
-      res.send(err)
-    })  
   }
 }
 
