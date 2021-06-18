@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       this.transactionAssociation = this.hasMany(models.Transaction, {
         foreignKey: 'wallet_id'
       })
-    }
+    } 
   };
   Wallet.init({
     name: DataTypes.STRING,

@@ -1,4 +1,5 @@
 const { Wallet, Users_Wallets, User, Transaction } = require('../models')
+const formatbalance = require('../helpers/countbalance')
 
 class WalletController {
   static home(req, res) {
@@ -9,7 +10,12 @@ class WalletController {
       },
     })
       .then((result) => {
-        res.render('listWallet', { userWallets: result })
+        // console.log(result[0].Wallet.balance);
+        result.forEach(userWallet => {
+          userWallet.Wallet.balance = formatbalance(userWallet.Wallet.balance)
+        })
+        console.log(result[0].Wallet.balance);
+        res.render('listWallet', { userWallets: result, balance:formatbalance })
       })
       .catch((err) => {
         res.send(err)

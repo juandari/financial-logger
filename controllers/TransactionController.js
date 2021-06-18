@@ -1,5 +1,9 @@
 const { Transaction, Wallet, Users_Wallets, User } = require('../models')
 const moment = require('moment')
+const formatbalance = require('../helpers/countbalance')
+const fastcsv = require("fast-csv");
+const fs = require("fs");
+
 
 class TransactionController {
   static home(req, res) {
@@ -16,6 +20,7 @@ class TransactionController {
           transaction.month = moment(transaction.transaction_date).format(
             'DD MMMM YYYY'
           )
+          transaction.amount = formatbalance(transaction.amount)
         })
 
         res.render('home', { transactions })
@@ -176,6 +181,29 @@ class TransactionController {
       .catch((err) => {
         res.send(err)
       })
+  }
+
+  static download(req,res){
+    let data = []
+    const ws = fs.createWriteStream("transactions.csv");
+    Transaction.findAll()
+    .then(result=>{
+      result = result.map(transaction=>{
+        return transaction.dataValues
+      })
+      data = result
+      console.log(data);
+      fastcsv
+      .write(data, { headers: true })
+      .on("finish", function() {
+        res.redirect('/transaction')
+        console.log("Write to transactions.csv successfully!");
+      })
+    .pipe(ws);
+    })
+    .catch(err=>{
+      res.send(err)
+    })  
   }
 }
 
