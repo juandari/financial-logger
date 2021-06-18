@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Wallet extends Model {
     /**
@@ -11,19 +9,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.usersAssociation = this.hasMany(models.Users_Wallets, {
-        foreignKey: 'wallet_id'
+        foreignKey: 'wallet_id',
       })
       this.transactionAssociation = this.hasMany(models.Transaction, {
-        foreignKey: 'wallet_id'
+        foreignKey: 'wallet_id',
       })
-    } 
-  };
-  Wallet.init({
-    name: DataTypes.STRING,
-    balance: DataTypes.BIGINT
-  }, {
-    sequelize,
-    modelName: 'Wallet',
-  });
-  return Wallet;
-};
+    }
+  }
+  Wallet.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'name cannot be empty',
+          },
+        },
+      },
+      balance: {
+        type: DataTypes.BIGINT,
+        validate: {
+          min: {
+            args: 1,
+            msg: 'transaction must be > 0',
+          },
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: 'Wallet',
+    }
+  )
+  return Wallet
+}

@@ -1,9 +1,7 @@
-'use strict';
+'use strict'
 
 const timetampsToDate = require('../helpers/convertTimestampToDate')
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Transaction extends Model {
     /**
@@ -16,41 +14,76 @@ module.exports = (sequelize, DataTypes) => {
       //   foreignKey: 'category_id'
       // })
       this.usersAssociation = this.belongsTo(models.User, {
-        foreignKey: 'user_id'
+        foreignKey: 'user_id',
       })
       this.walletAssociation = this.belongsTo(models.Wallet, {
-        foreignKey: 'wallet_id'
+        foreignKey: 'wallet_id',
       })
     }
-  };
-  Transaction.init({
-    user_id: DataTypes.INTEGER,
-    type: DataTypes.STRING,
-    amount: {
-      type: DataTypes.BIGINT,
-      validate: {
-        min: {
-          args: 1,
-          msg: 'transaction must be > 0'
-        }
-      }
+  }
+  Transaction.init(
+    {
+      user_id: DataTypes.INTEGER,
+      type: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'type cannot be empty',
+          },
+        },
+      },
+      amount: {
+        type: DataTypes.BIGINT,
+        validate: {
+          min: {
+            args: 1,
+            msg: 'transaction must be > 0',
+          },
+        },
+      },
+      category: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'category cannot be empty',
+          },
+        },
+      },
+      note: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'note cannot be empty',
+          },
+        },
+      },
+      wallet_id: {
+        type: DataTypes.INTEGER,
+        validate: {
+          min: {
+            args: 1,
+            msg: 'Choose wallet before saving a transaction',
+          },
+        },
+      },
+      transaction_date: {
+        type: DataTypes.DATE,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'date tidak boleh kosong',
+          },
+        },
+      },
     },
-    category: DataTypes.STRING,
-    note: DataTypes.STRING,
-    wallet_id: {
-      type: DataTypes.INTEGER,
-      validate: {
-        min: {
-          args: 1,
-          msg: 'Choose wallet before saving a transaction'
-        }
-      }
-    },
-    transaction_date: DataTypes.DATE
-  }, {
-    sequelize,
-    modelName: 'Transaction',
-  });
+    {
+      sequelize,
+      modelName: 'Transaction',
+    }
+  )
 
-  return Transaction;
-};
+  return Transaction
+}
